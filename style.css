@@ -1,0 +1,258 @@
+/* --- GLOBAL STYLES & UNIQUE DESIGN --- */
+body {
+    font-family: 'Arial', sans-serif;
+    /* Gradient Background: Deep purple to bright blue */
+    background: linear-gradient(to right, #6a11cb, #2575fc); 
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Add padding for mobile view safety */
+}
+
+.container {
+    /* Frosted-glass effect using blur and slight transparency */
+    background-color: rgba(255, 255, 255, 0.1); 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 400px; /* Fixed width for desktop screens */
+    backdrop-filter: blur(5px); 
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* --- INPUT AREA STYLING --- */
+.input-area {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+.icon-btn {
+    background-color: #ff5722; /* Vibrant orange for the '+' icon */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.icon-btn:hover {
+    background-color: #e64a19;
+}
+
+/* --- LIST ITEM STYLING & ANIMATION --- */
+#todo-list {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+}
+
+#todo-list li {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
+    /* Initial state for the entry animation (faded out and off-screen) */
+    opacity: 0; 
+    transform: translateX(-20px);
+    /* Apply the entry animation when the element is created */
+    animation: fadeInSlide 0.4s forwards; 
+}
+
+/* Delete Icon Styling */
+.delete-btn {
+    color: #f44336; /* Bright red color for delete icon */
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+    margin-left: 15px;
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+    transform: scale(1.1); /* Small hover animation */
+}
+
+/* Completed Task Style (Toggled by JS) */
+.completed {
+    *text-decoration: line-through ; 
+    opacity: 0.6;
+}
+
+/* Animation Keyframes: Definition of the slide-in/fade-in effect */
+@keyframes fadeInSlide {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- RESPONSIVE DESIGN: Media Query for Mobile Screens --- */
+
+@media (max-width: 600px) {
+    
+    body {
+        /* Remove vertical alignment on small screens to allow scrolling */
+        min-height: auto;
+        align-items: flex-start; 
+        padding-top: 20px;
+    }
+    
+    .container {
+        /* Use 90% of the viewport width */
+        width: 90%; 
+        padding: 20px 15px; /* Adjust padding */
+        box-sizing: border-box; /* Include padding in the element's total width */
+    }
+    
+    h1 {
+        /* Reduce the size of the main heading for mobile */
+        font-size: 1.8em;
+    }
+
+    #task-input {
+        font-size: 15px;
+    }
+
+    .icon-btn {
+        padding: 10px 12px; /* Adjust button size for smaller screens */
+    }
+    
+    #todo-list li {
+        padding: 10px;
+        font-size: 15px;
+    }
+    
+}
+/* --- CREATOR INFO STYLING --- */
+.creator-info {
+    /* Font and Size */
+    font-family: monospace; /* A common, clean coding font */
+    font-size: 0.85em; /* Small size, relative to the container font */
+    font-weight: 300; /* Lighter weight for subtle look */
+    
+    /* Color and Alignment */
+    color: rgba(255, 255, 255, 0.7); /* Subtle white text */
+    text-align: center; /* Center the text */
+    
+    /* Spacing */
+    margin-bottom: 15px; /* Add space below the text */
+}
+/* --- PAGE CREDIT STYLING & FIXED POSITION --- */
+.page-credit {
+    /* Positioning: Fixes the element relative to the browser window */
+    position: fixed; 
+    
+    /* Coordinates: Place it in the bottom-right corner */
+    bottom: 15px; /* 15 pixels up from the very bottom edge */
+    right: 15px;  /* 15 pixels from the very right edge */
+    
+    /* Styling */
+    color: rgb(246, 241, 241); /* Subtle white color */
+    font-size: 14px; /* Requested size */
+    font-weight: bold; /* Requested style */
+    font-family: 'Arial', sans-serif; /* Keep a readable font */
+    
+    /* Ensure it stays above the gradient background */
+    z-index: 10; 
+}
+/* --- HEADER LOGO STYLING (INSIDE CONTAINER) --- */
+.header-logo {
+    display: block; /* Makes the image take its own line */
+    margin: 0 auto 15px auto; /* Centers the image horizontally, adds space below */
+    width: 80px; /* Set a specific width for your logo (adjust as needed) */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Adjust h1 margin if needed after adding the logo */
+.container h1 {
+    text-align: center;
+    margin-bottom: 25px; /* Adjust this if the logo and h1 are too close */
+}
+
+/* Media query for smaller screens, if you want the logo to be smaller */
+@media (max-width: 600px) {
+    .header-logo {
+        width: 60px; /* Smaller logo on mobile */
+        margin-bottom: 10px;
+    }
+}
+/* --- STATUS ICON STYLING --- */
+.status-icon {
+    font-size: 1.2em; /* Slightly larger than text */
+    margin-right: 15px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Color the checkmark green when the task is completed */
+#todo-list li.completed .status-icon {
+    color: #4CAF50; /* A pleasant green color */
+}
+
+/* Color the unchecked circle normally (or a subtle gray) */
+#todo-list li:not(.completed) .status-icon {
+    color: #777; /* Gray color for incomplete */
+}
+
+/* Ensure the task text aligns nicely next to the icon */
+.task-text {
+    flex-grow: 1; /* Allows the text to take up the remaining space */
+    user-select: none; /* Prevents text selection during clicks */
+}
+/* --- HEADER LOGO STYLING (INSIDE CONTAINER) --- */
+.header-logo {
+    display: block; 
+    margin: 0 auto 15px auto; 
+    /* width: 80px;  <-- REMOVE THIS */
+    /* height: auto; <-- REMOVE THIS */
+    font-size: 60px; /* <--- ADD THIS for icon size */
+    color: #6a11cb; /* <--- ADD THIS for icon color (example purple) */
+    text-align: center; /* Ensures it's centered if it's an icon */
+}
+
+@media (max-width: 600px) {
+    .header-logo {
+        font-size: 45px; /* Smaller icon on mobile */
+        margin-bottom: 10px;
+    }
+}
+
+/* --- CLEAR ALL BUTTON STYLING --- */
+/* Use the .clear-btn class added in HTML */
+.clear-btn {
+    /* Make the button full width of the container */
+    width: 100%;
+    /* Put some space above the button */
+    margin-top: 20px; 
+    /* Use a contrasting background color, like red/maroon, for a destructive action */
+    background-color: #c0392b; 
+    /* Reset the border-radius from the icon-btn to make it a rectangle */
+    border-radius: 5px; 
+    /* Add extra padding for a larger, more prominent button */
+    padding: 12px; 
+}
+
+/* Ensure the hover effect is also red */
+.clear-btn:hover {
+    background-color: #a93226;
+}
